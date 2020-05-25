@@ -1,26 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Question
+    Questions
 {% endblock %}
 
 {% block content %}
     <div class="container theme-showcase" role="main">
 
+        {% for question in questions %}
             <div class="jumbotron">
                 <div>
                     <b>{{ question.text|upper }}</b>
                     <span>, Asked By: {{ question.user_id }}</span>
-                    {% for answer in answers %}
-                        <p>
-                            {{ answer.text }}
-                            <span>, Answered By: {{ answer.user_id }}</span>
-                        </p>
-                    {% endfor %}
+                    <a href="{{ url_for('questions_page.question', question_id=question.id) }}"
+                       class="btn btn-primary">View Question</a>
                     <a href="{{ url_for('questions_page.answer_question', question_id=question.id) }}"
                        class="btn btn-primary">Answer</a>
                 </div>
             </div>
-
+        {% endfor %}
     </div> <!-- /container -->
 {% endblock %}
