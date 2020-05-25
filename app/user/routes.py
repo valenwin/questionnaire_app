@@ -21,7 +21,8 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('user_page.login'))
-    return render_template('user/register.html', form=form)
+    return render_template('user/register.html',
+                           form=form)
 
 
 @user_page.route('/login', methods=['GET', 'POST'])
@@ -31,7 +32,7 @@ def login():
     if request.method == 'POST' and form.validate():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.is_password_valid(form.password.data):
-            session['email'] = user.email
+            session['user'] = user.email
             return redirect(url_for('index'))
         else:
             user = None
@@ -44,5 +45,5 @@ def login():
 
 @user_page.route('/logout')
 def logout():
-    session.pop('email')
+    session.pop('user')
     return redirect(url_for('user_page.login'))
