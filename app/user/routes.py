@@ -47,3 +47,10 @@ def login():
 def logout():
     session.pop('user')
     return redirect(url_for('user_page.login'))
+
+
+@user_page.route('/users')
+def users():
+    users_lst = User.query.all()
+    return render_template('user/users.html',
+                           users=users_lst)
