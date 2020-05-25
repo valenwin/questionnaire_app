@@ -16,4 +16,5 @@ class Question(db.Model):
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = NotNullColumn(db.String(1000))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
