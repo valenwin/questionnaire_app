@@ -14,7 +14,10 @@ migrate = Migrate(app, db)
 
 # Blueprints
 from .user import user_page
+from .questions import questions_page
 app.register_blueprint(user_page, url_prefix='/user')
+app.register_blueprint(questions_page, url_prefix='/questions')
 
 from . import routes, models
 from .user import routes, models
+from .questions import routes, models
