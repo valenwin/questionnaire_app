@@ -6,13 +6,11 @@ from .forms import QuestionForm, AnswerForm
 from .models import Question, Answer
 from .. import db
 from ..user.utils import get_current_user
-from ..user.models import User
 
 
 @questions_page.route('/', methods=['GET', 'POST'])
 def questions():
-    questions_lst = Question.query.join(User, User.id==Question.id).all()
-
+    questions_lst = Question.query.all()
     return render_template('questions/questions.html',
                            questions=questions_lst,
                            )
@@ -21,10 +19,8 @@ def questions():
 @questions_page.route('/<question_id>', methods=['GET', 'POST'])
 def question(question_id):
     question_item = Question.query.filter_by(id=question_id).first()
-    answers = Answer.query.filter_by(question_id=question_id).all()
     return render_template('questions/question.html',
-                           question=question_item,
-                           answers=answers)
+                           question=question_item)
 
 
 @questions_page.route('/ask-question', methods=['GET', 'POST'])

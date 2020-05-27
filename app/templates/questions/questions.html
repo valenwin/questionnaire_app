@@ -11,7 +11,7 @@
             <div class="jumbotron">
                 <div>
                     <b>{{ question.text|upper }}</b>
-                    <span>, Asked By: {{ question.user_id }}</span>
+                    <span>, Asked By: {{ question.user.name }}</span>
                     <a href="{{ url_for('questions_page.question', question_id=question.id) }}"
                        class="btn btn-primary">View Question</a>
                     <a href="{{ url_for('questions_page.answer_question', question_id=question.id) }}"

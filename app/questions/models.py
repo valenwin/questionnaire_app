@@ -12,6 +12,9 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = NotNullColumn(db.String(500))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    answers = db.relationship('Answer', backref='question', lazy='dynamic')
+
     created = db.Column(db.DateTime, default=datetime.now)
 
     def __repr__(self):

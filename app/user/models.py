@@ -16,6 +16,10 @@ class User(db.Model):
     email = NotNullColumn(db.String, unique=True)
     password = NotNullColumn(db.String)
     created = db.Column(db.DateTime, default=datetime.now)
+
+    answers = db.relationship('Answer', backref='user', lazy='dynamic')
+    questions = db.relationship('Question', backref='user', lazy='dynamic')
+
     slug = db.Column(db.String(), nullable=True)
 
     def __repr__(self):

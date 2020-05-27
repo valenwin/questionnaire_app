@@ -16,17 +16,15 @@
                     {% from '_formhelper.html' import render_field %}
                     <form class="form-horizontal" method="POST" action="{{ url_for('questions_page.ask_question') }}">
                         <fieldset>
-                            <form method="POST" action="{{ url_for('questions_page.ask_question') }}">
-                                {{ form.csrf_token }}
-                                <fieldset>
-                                    {{ render_field(form.text, class="form-control", placeholder="Write a question...") }}
-                                    <div class="form-group">
-                                        <div class="col-lg-10 col-lg-offset-2">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
+                            {{ form.csrf_token }}
+                            <fieldset>
+                                {{ render_field(form.text, class="form-control", placeholder="Write a question...") }}
+                                <div class="form-group">
+                                    <div class="col-lg-10 col-lg-offset-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
-                                </fieldset>
-                            </form>
+                                </div>
+                            </fieldset>
                         </fieldset>
                     </form>
                 </div>
